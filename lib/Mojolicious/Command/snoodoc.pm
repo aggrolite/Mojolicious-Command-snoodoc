@@ -1,8 +1,41 @@
 package Mojolicious::Command::snoodoc;
 
-use strict;
-use 5.008_005;
+use Mojo::Base 'Mojolicious::Command';
+
+use Mojo::UserAgent;
+use Mojo::URL;
+
 our $VERSION = '0.01';
+
+has description => 'Quick reference tool for the reddit API';
+
+
+
+sub run {
+    my ($self, $endpoint) = @_;
+
+    my $ua = Mojo::UserAgent->new();
+    my $url = 'http://www.reddit.com/dev/api';
+
+    my $container = $ua->get($url)->res->dom->at("div#$endpoint");
+
+    my $scopes = $container->find('.api-badge\ oauth-scope')->map('text')->map(sub { "* $_" } )->join("\n");
+
+    say "Documentation for $endpoint";
+
+    say "\n[OAuth Scopes]";
+    say "$scopes\n";
+
+    my $desc = $container->find('.md p')->map('text')->join("\n\n");
+
+
+    say "Description\n $desc\n";
+
+    # get description
+    #
+    # get params
+
+}
 
 1;
 __END__
