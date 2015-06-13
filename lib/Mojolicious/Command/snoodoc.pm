@@ -5,16 +5,54 @@ use Mojo::Base 'Mojolicious::Command';
 use Mojo::UserAgent;
 use Mojo::URL;
 
+use Getopt::Long qw(GetOptionsFromArray);
+
 our $VERSION = '0.01';
 
 has description => 'Quick reference tool for the reddit API';
 
 has usage => <<EOF;
-Usage: mojo snoodoc <endpoint>
+Usage:
 
-Example: mojo snoodoc /api/hide
+    mojo snoodoc <endpoint>
+    mojo snoodoc --all
+
+Options:
+
+    --all, -a   Print a list of endpoints available
+
+Example:
+
+    mojo snoodoc /api/hide
 
 EOF
+
+has ua => sub { Mojo::UserAgent->new() };
+
+has url => 'http://www.reddit.com/dev/api';
+
+sub _print_all_endpoints {
+    my $self = shift;
+
+    $self->ua->get($self->url)->res->dom->at('div.toc')->find('a.section')->each(
+        sub {
+
+            # print section title
+            say $_->text;
+
+            $_->following->first->find('li a')->each(
+                sub {
+
+                    # convert paceholder tags, e.g. /by_id/{names}
+                    $_->find('em')->each(sub { $_->replace('{' . $_->text . '}') });
+
+                    # indent results
+                    say ' ' . $_->text;
+                }
+            );
+        }
+    );
+}
 
 sub _pretty_print {
     my ($self, $scopes, $desc, $params) = @_;
@@ -74,7 +112,20 @@ sub _get_info {
 }
 
 sub run {
-    my ($self, $endpoint) = @_;
+    my ($self, @args) = @_;
+
+    GetOptionsFromArray(
+        \@args,    #
+        'all|a' => \my $all,
+    );
+
+    if ($all) {
+        $self->_print_all_endpoints();
+        return;
+    }
+
+    # assuming only one endpoint was given
+    my $endpoint = shift @args;
 
     # do not continue without endpoint
     unless ($endpoint) {
@@ -85,10 +136,7 @@ sub run {
     $endpoint =~ s@^/@@;     # remove leading /
     $endpoint =~ s@/@_@g;    # look like URL fragment
 
-    my $ua = Mojo::UserAgent->new();
-    my $url = 'http://www.reddit.com/dev/api';
-
-    my $container = $ua->get($url)->res->dom->at('div[id$=' . $endpoint . ']');
+    my $container = $self->ua->get($self->url)->res->dom->at('div[id$=' . $endpoint . ']');
 
     $self->_get_info($container);
 }
@@ -106,6 +154,7 @@ Mojolicious::Command::snoodoc - Quick reference tool for the Reddit API
 
   $ mojo snoodoc /api/save | less
   $ mojo snoodoc /api/v1/me/prefs | less
+  $ mojo snoodoc --all
 
 =head1 DESCRIPTION
 

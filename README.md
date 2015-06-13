@@ -6,6 +6,7 @@ Mojolicious::Command::snoodoc - Quick reference tool for the Reddit API
 
     $ mojo snoodoc /api/save | less
     $ mojo snoodoc /api/v1/me/prefs | less
+    $ mojo snoodoc --all
 
 # DESCRIPTION
 
