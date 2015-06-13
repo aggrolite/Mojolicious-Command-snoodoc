@@ -9,6 +9,13 @@ our $VERSION = '0.01';
 
 has description => 'Quick reference tool for the reddit API';
 
+has usage => <<EOF;
+Usage: mojo snoodoc <endpoint>
+
+Example: mojo snoodoc /api/hide
+
+EOF
+
 sub _pretty_print {
     my ($self, $scopes, $desc, $params) = @_;
 
