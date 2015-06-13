@@ -2,5 +2,10 @@ Revision history for Mojolicious-Command-snoodoc
 
 {{$NEXT}}
 
+0.02  2015-06-13 09:21:40 PDT
+        - Print all available endpoints with --all option
+        - Do not find() on undefined endpoint arg
+        - Show command usage
+
 0.01  2015-06-12 19:20:56 PDT
         - Initial release

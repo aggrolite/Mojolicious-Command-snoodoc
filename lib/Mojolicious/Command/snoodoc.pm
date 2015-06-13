@@ -7,7 +7,7 @@ use Mojo::URL;
 
 use Getopt::Long qw(GetOptionsFromArray);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 has description => 'Quick reference tool for the reddit API';
 
