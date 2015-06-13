@@ -1,5 +1,5 @@
 {
-   "abstract" : "Blah blah blah",
+   "abstract" : "Quick reference tool for the Reddit API",
    "author" : [
       "Curtis Brandt <curtis@cpan.org>"
    ],
@@ -48,6 +48,17 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/aggrolite/Mojolicious-Command-snoodoc/issues"
+      },
+      "homepage" : "https://github.com/aggrolite/Mojolicious-Command-snoodoc",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/aggrolite/Mojolicious-Command-snoodoc.git",
+         "web" : "https://github.com/aggrolite/Mojolicious-Command-snoodoc"
+      }
+   },
    "version" : "0.01"
 }
 

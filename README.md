@@ -1,14 +1,17 @@
 # NAME
 
-Mojolicious::Command::snoodoc - Blah blah blah
+Mojolicious::Command::snoodoc - Quick reference tool for the Reddit API
 
 # SYNOPSIS
 
-    use Mojolicious::Command::snoodoc;
+    $ mojo snoodoc /api/save | less
+    $ mojo snoodoc /api/v1/me/prefs | less
 
 # DESCRIPTION
 
-Mojolicious::Command::snoodoc is
+Easily print out documentation of specific Reddit API endpoints. Output
+shows a description of the given endpoint, along with any OAuth scopes
+and parameters.
 
 # AUTHOR
 
