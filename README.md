@@ -13,6 +13,8 @@ Easily print out documentation of specific Reddit API endpoints. Output
 shows a description of the given endpoint, along with any OAuth scopes
 and parameters.
 
+See the reddit [documentation](http://www.reddit.com/dev/api) for details.
+
 # AUTHOR
 
 Curtis Brandt <curtis@cpan.org>
@@ -28,3 +30,5 @@ The (two-clause) FreeBSD License. See LICENSE for details.
 # SEE ALSO
 
 [Mojo::Snoo](https://metacpan.org/pod/Mojo::Snoo)
+
+[reddit documentation](http://www.reddit.com/dev/api)
