@@ -110,9 +110,10 @@ Copyright 2015- Curtis Brandt
 
 =head1 LICENSE
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+The (two-clause) FreeBSD License. See LICENSE for details.
 
 =head1 SEE ALSO
+
+L<Mojo::Snoo>
 
 =cut
