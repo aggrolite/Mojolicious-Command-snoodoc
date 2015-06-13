@@ -76,6 +76,12 @@ sub _get_info {
 sub run {
     my ($self, $endpoint) = @_;
 
+    # do not continue without endpoint
+    unless ($endpoint) {
+        print $self->usage;
+        return;
+    }
+
     $endpoint =~ s@^/@@;     # remove leading /
     $endpoint =~ s@/@_@g;    # look like URL fragment
 
