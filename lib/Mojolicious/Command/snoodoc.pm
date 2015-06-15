@@ -73,8 +73,10 @@ sub _get_info {
 
     my $desc = $container->find('.md p')->map(
         sub {
-            ## keep a bit of identation for output
-            return ' ' . $_->text unless $_->text =~ /\bSee also\b/;
+            unless ($_->text =~ /\bSee also\b/) {
+                $_->find('*')->map('strip');    # get all text available
+                return ' ' . $_->text;
+            }
 
             # use strip() instead?
             return 'See also: ', $_->find('a')->map(
