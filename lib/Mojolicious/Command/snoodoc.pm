@@ -102,6 +102,8 @@ sub _get_info {
 
             # some parameters don't have a description
             if (my $param_desc = $_->at('td p')) {
+                ## strip code elements
+                $param_desc->children->map('strip');
                 $param .= ': ' . $param_desc->text;
             }
 
