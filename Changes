@@ -2,6 +2,9 @@ Revision history for Mojolicious-Command-snoodoc
 
 {{$NEXT}}
 
+0.04  2015-06-16 11:15:25 PDT
+        - Strip parameter code elements for full text
+
 0.03  2015-06-15 09:34:30 PDT
         - Strip description tags to get children text
 
