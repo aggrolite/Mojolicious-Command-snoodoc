@@ -59,7 +59,8 @@ sub _pretty_print {
 
     say "OAuth Scopes:\n\n$scopes\n";
 
-    say "Description:\n\n$desc\n";
+    print "Description:";
+    say length $desc ? "\n\n$desc\n" : " n/a\n";
 
     say "Parameters:\n\n$params";
 }
