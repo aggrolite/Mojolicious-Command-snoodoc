@@ -153,9 +153,16 @@ sub run {
     $endpoint =~ s@^/@@;     # remove leading /
     $endpoint =~ s@/@_@g;    # look like URL fragment
 
-    my $container = $self->ua->get($self->url)->res->dom->at('div[id$=' . $endpoint . ']');
+    my @containers = $self->ua->get($self->url)->res->dom->find('div[id*=' . $endpoint . ']')->each(
+        sub {
+            $self->_get_info($_);
+        }
+    );
 
-    $self->_get_info($container);
+    unless (@containers) {
+        print "No endpoint matching that text was found.\n";
+        return;
+    }
 }
 
 1;
