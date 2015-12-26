@@ -2,6 +2,12 @@ Revision history for Mojolicious-Command-snoodoc
 
 {{$NEXT}}
 
+0.05  2015-12-26 18:23:48 EST
+        - Process all endpoints which have substring matches of given text
+        - Print title text of each endpoint section
+        - Handle empty descriptions as n/a
+        - Use HTTPS
+
 0.04  2015-06-16 11:15:25 PDT
         - Strip parameter code elements for full text
 

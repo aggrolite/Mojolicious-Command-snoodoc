@@ -18,7 +18,7 @@ See the reddit [documentation](http://www.reddit.com/dev/api) for details.
 
 # AUTHOR
 
-Curtis Brandt <curtis@cpan.org>
+Curtis Brandt &lt;curtis@cpan.org>
 
 # COPYRIGHT
 
