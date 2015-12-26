@@ -55,7 +55,11 @@ sub _print_all_endpoints {
 }
 
 sub _pretty_print {
-    my ($self, $scopes, $desc, $params) = @_;
+    my ($self, $title, $scopes, $desc, $params) = @_;
+
+    my $divider = join '', "=" x length $title;
+
+    say "$divider\n$title\n$divider\n";
 
     say "OAuth Scopes:\n\n$scopes\n";
 
@@ -69,8 +73,16 @@ sub _get_info {
     my ($self, $container) = @_;
 
     my $scopes = $container->find('.api-badge\ oauth-scope')->map(    #
-        sub { ' * ' . $_->text } # indentaion
+        sub {
+            # indentaion
+            my $t = ' * ' . $_->text;
+            # Remove scope element so not to appear in $title text.
+            $_->remove();
+            $t;
+        }
     )->join("\n\n");
+
+    my $title = $container->at('h3')->all_text;
 
     my $desc = $container->find('.md p')->map(
         sub {
@@ -113,7 +125,7 @@ sub _get_info {
         }
     )->join("\n\n");
 
-    $self->_pretty_print($scopes, $desc, $params);
+    $self->_pretty_print($title, $scopes, $desc, $params);
 }
 
 sub run {
