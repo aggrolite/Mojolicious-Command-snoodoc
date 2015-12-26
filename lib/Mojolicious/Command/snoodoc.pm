@@ -29,7 +29,7 @@ EOF
 
 has ua => sub { Mojo::UserAgent->new() };
 
-has url => 'http://www.reddit.com/dev/api';
+has url => 'https://www.reddit.com/dev/api';
 
 sub _print_all_endpoints {
     my $self = shift;
